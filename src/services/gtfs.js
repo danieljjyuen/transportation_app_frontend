@@ -17,7 +17,7 @@ const getBrownLines = async()=> {
     const response = await axios.get(`${baseUrl}/brownLines`)
     return response.data
 }
-//sir, staten island railway
+//SI, SS sir, staten island railway
 const getSirLines = async()=> {
     const response = await axios.get(`${baseUrl}/sirLines`)
     return response.data

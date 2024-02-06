@@ -3,15 +3,20 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const realTimeSlice = createSlice({
     name: 'realTime',
-    initialState: {},
+    initialState: {
+        isInitialized:false
+    },
     reducers: {
         setRealTime(state, action){
             return {...state, ...action.payload}
+        },
+        setIsInitialized(state, action){
+            return {...state, isInitialized:true}
         }
     }
 })
 
-export const { setRealTime } = realTimeSlice.actions
+export const { setRealTime, setIsInitialized } = realTimeSlice.actions
 
 export const initializeState = () => async (dispatch) => {
     try{
@@ -25,6 +30,7 @@ export const initializeState = () => async (dispatch) => {
         const lTrainLinesData = await gtfsService.getLTrainLines()
         const numberLinesData = await gtfsService.getNumberLines()
 
+        //set data fetched from api
         dispatch(setRealTime({ yellowLines: yellowLinesData }))
         dispatch(setRealTime({ orangeLines: orangeLinesData }))
         dispatch(setRealTime({ brownLines: brownLinesData }))
@@ -33,6 +39,9 @@ export const initializeState = () => async (dispatch) => {
         dispatch(setRealTime({ blueLines: blueLinesData }))
         dispatch(setRealTime({ lTrainLines: lTrainLinesData }))
         dispatch(setRealTime({ numberLines: numberLinesData }))
+        
+        //set isInitialized to true
+        dispatch(setIsInitialized())
 
     } catch (error) {
         console.error(error)
