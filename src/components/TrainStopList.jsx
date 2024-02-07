@@ -9,7 +9,7 @@ const TrainStopList = ({direction}) => {
     let trainStops = useSelector(state => state.realTime[lines][trainId][direction])
 
     let stationList = Object.keys(trainStops)
-
+    //map out all the train stops this train will be stopping at
     return(
         <div>
             {stationList.length > 0 ? (

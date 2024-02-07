@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 
 const GroupLine = ({line, trainsArray}) => {
-
+//dynamically link each train to its own page
     return (
         <div>
             {trainsArray.map((train, index) => (

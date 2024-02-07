@@ -3,7 +3,7 @@ import { useSelector } from "react-redux"
 import TrainStopList from "../components/TrainStopList"
 
 const TrainStops = () => {
-
+    //fetch params from url
     let lines = useParams().lines
     let trainId = useParams().trainId
 
@@ -20,6 +20,7 @@ const TrainStops = () => {
     let fetchNorthBound = fetchDirection(trainLine['N'])
     let fetchSouthBound = fetchDirection(trainLine['S'])
     
+    //list all stops this trains stops at from both direction
     return(
         <div>
             <h3>{trainId}</h3>

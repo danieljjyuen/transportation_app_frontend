@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom"
 import { useSelector } from "react-redux"
-
+import TrainTimeLine from "../components/TrainTimeLine"
 
 const TrainStopList = () => {
     let direction = useParams().direction
@@ -13,9 +13,9 @@ const TrainStopList = () => {
     let bound = direction === 'N' ? 'North Bound' : 'South Bound'
     return (
         <div>
-            <h3>{trainId} {bound}</h3>
+            <h3>{station} {bound} {trainId} Train </h3>
             {timeTable.map((time, index) => (
-                <li key={index}>{time}</li>
+                <TrainTimeLine key={index} time={time}/>
             ))}
         </div>
     )
