@@ -11,12 +11,12 @@ const realTimeSlice = createSlice({
             return {...state, ...action.payload}
         },
         setIsInitialized(state, action){
-            return {...state, isInitialized:true}
+            return {...state, isInitialized: true}
         }
     }
 })
 
-export const { setRealTime, setIsInitialized } = realTimeSlice.actions
+export const { setRealTime, setIsInitialized, clearState } = realTimeSlice.actions
 
 export const initializeState = () => async (dispatch) => {
     try{
@@ -39,10 +39,79 @@ export const initializeState = () => async (dispatch) => {
         dispatch(setRealTime({ blueLines: blueLinesData }))
         dispatch(setRealTime({ lTrainLines: lTrainLinesData }))
         dispatch(setRealTime({ numberLines: numberLinesData }))
-        
+        //console.log(yellowLinesData)
         //set isInitialized to true
-        dispatch(setIsInitialized())
+        dispatch(setIsInitialized(true))
 
+    } catch (error) {
+        console.error(error)
+    }
+}
+
+export const yellowLines = () => async  (dispatch) => {
+    try{
+        const yellowLinesData = await gtfsService.getYellowLines()
+        dispatch(setRealTime({ yellowLines: yellowLinesData }))
+    } catch (error) {
+        console.error(error)
+    }
+}
+export const orangeLines = () => async  (dispatch) => {
+    try{
+        const orangeLinesData = await gtfsService.getOrangeLines()
+        dispatch(setRealTime({ orangeLines: orangeLinesData }))
+    } catch (error) {
+        console.error(error)
+    }
+}
+export const brownLines = () => async  (dispatch) => {
+    try{
+        const brownLinesData = await gtfsService.getBrownLines()
+        dispatch(setRealTime({ brownLines: brownLinesData }))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+export const sirLines = () => async  (dispatch) => {
+    try{
+        const sirLinesData = await gtfsService.getSirLines()
+        dispatch(setRealTime({ sirLines: sirLinesData }))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+export const greenLines = () => async  (dispatch) => {
+    try{
+        const greenLinesData = await gtfsService.getGreenLines()
+        dispatch(setRealTime({ greenLines: greenLinesData }))
+    } catch (error) {
+        console.error(error)
+    }
+}
+export const blueLines = () => async  (dispatch) => {
+    try{
+        const blueLinesData = await gtfsService.getBlueLines()
+        dispatch(setRealTime({ blueLines: blueLinesData }))
+
+    } catch (error) {
+        console.error(error)
+    }
+}
+export const lTrainLines = () => async  (dispatch) => {
+    try{
+        const lTrainLinesData = await gtfsService.getLTrainLines()
+        dispatch(setRealTime({ lTrainLines: lTrainLinesData }))
+        
+    } catch (error) {
+        console.error(error)
+    }
+}
+export const numberLines = () => async  (dispatch) => {
+    try{
+        const numberLinesData = await gtfsService.getNumberLines()
+        dispatch(setRealTime({ numberLines: numberLinesData }))
     } catch (error) {
         console.error(error)
     }
