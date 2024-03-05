@@ -16,8 +16,8 @@ const App = () => {
   const isInitialized = useSelector(state => state.realTime.isInitialized)
   useEffect(() => {
     dispatch(initializeState())
+    
   },[])
-
   console.log(isInitialized)
 
 

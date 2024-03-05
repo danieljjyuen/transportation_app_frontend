@@ -5,10 +5,10 @@ import TrainStopLine from "./TrainStopLine"
 const TrainStopList = ({direction}) => {
     let lines = useParams().lines
     let trainId = useParams().trainId
-  
-    let trainStops = useSelector(state => state.realTime[lines][trainId][direction])
 
-    let stationList = Object.keys(trainStops)
+    let trainStops = useSelector(state => state.realTime.allTrainsData.filter(train => train.routeId === trainId).map(train => train[direction]))
+    let stationList = Object.keys(trainStops[0])
+  
     //map out all the train stops this train will be stopping at
     return(
         <div>
